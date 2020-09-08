@@ -1,0 +1,49 @@
+{% extends 'Base.html' %}
+{% block header %}
+<div class="navbar-fixed">
+<nav>
+     <div class="nav-wrapper">
+          <ul class="left">
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <!--<li><a href="/Dashboard/" class="btn-floating btn-small waves-effect waves-light black tooltipped"  data-position="bottom" data-tooltip="Click to go Dashboard"><i class="material-icons">devices_other</i></a></li>-->
+              <li><h5 href = "/Dashboard/" class="tooltipped"  data-position="bottom" data-tooltip="HomzHub"> HomzHub Assignment-1</h5></li>
+          </ul>
+          <ul class="right">
+              <a type='submit' name='btn_login' href="/admin/" class='col s12 btn waves-effect indigo'>Admin Login?</a>
+           <a type='submit' name='btn_login' href="/Login/" class='col s12 btn waves-effect indigo'>Open Assignment-2</a>
+           <li><a class="dark-toggle tooltipped black-text" onclick="myDark()"  data-position="bottom"  data-tooltip="Toggle dark/light themes" ><i class="material-icons">brightness_4</i></a></li>
+            </ul>
+     </div>
+</nav>
+</div>
+{% endblock header %}
+
+
+{% block content %}
+
+
+
+<div class="row">
+  <div class="col s12">
+    <h4><b>Scrapped Result</b></h4>
+    <h5>Total: {{count}} feeds</h5>
+    {% for result in Result%}
+    <div class="card z-depth-5 hoverable">
+      <div class="card-content">
+          <br>
+             <h8><b>Title:</b> {{result.Title}}</h8><br>
+             <h8><b>Link:</b></h8><a href="{{result.Link}}" >{{result.Link | truncatechars:100 }}</a><br>
+             <h8><b>Published Date:</b> {{result.PubDate}}</h8>
+       </div>
+     </div>
+{% endfor %}
+  </div>
+</div>
+<script>
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
+
+</script>
+{% endblock content %}

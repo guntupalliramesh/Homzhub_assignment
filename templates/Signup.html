@@ -1,0 +1,41 @@
+{% extends 'Login.html' %}
+{% block content %}
+{% if messages %} {% for message in messages %}
+<div class="msg msg-error z-depth-3 scale-transition"> {{ message }} </div>
+{% endfor %}{% endif %}
+<br>
+<h4><b>Signup</b></h4>
+<div class="card ">
+    <div class="card-content">
+        <h6 class="red-text">* required</h6>
+         <form class="col s12" method = "POST" action="/Signup/">  {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="userid" id="userid" type="text" name="userid" class="validate" required>
+                            <label for="userid" class="black-text">User Name *</label>
+                        </div>
+                    </div>         
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Mail" id="email-mail" type="email" name="email" class="validate" required>
+                            <label for="email-mail" class="black-text">Mail *</label>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Password" id="Password1" type="text" class="validate" name="Password1" required>
+                            <label for="Password1" class="black-text">Password *</label>
+                        </div>
+                        </div>
+             <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Re type Password" id="Password2" type="password" class="validate" name="Password2" required>
+                            <label for="Password2" class="black-text">Re type Password *</label>
+                        </div>
+                        </div>
+                   <button class="btn waves-effect waves-light right black pulse" id= "submitanswer" type="submit">Register
+                </button>
+                <br>
+               </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% load static %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+<link rel="stylesheet" href="{% static 'css/BodyDarkTogglee.css' %}">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+{% block header %}    
+<div class="navbar-fixed">
+<nav>
+     <div class="nav-wrapper">
+          <ul class="left">
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <!--<li><a href="/Dashboard/" class="btn-floating btn-small waves-effect waves-light black tooltipped"  data-position="bottom" data-tooltip="Click to go Dashboard"><i class="material-icons">devices_other</i></a></li>-->
+              <li><h5 href = "/Dashboard/" class="tooltipped"  data-position="bottom" data-tooltip="HomzHub"> HomzHub Assignment-2</h5></li>
+          </ul>
+          <ul class="hide-on-med-and-down right">
+                <li><a href ="/RawData/" class="blue-text tooltipped"  data-position="bottom" data-tooltip="Api"><i class="material-icons right">developer_mode</i> Api </a></li>
+                <li><a class="blue-text tooltipped"  data-position="bottom" data-tooltip="Welcome {{user}}"><i class="material-icons right">person</i> Hi, {{user | truncatechars:12}} </a></li>
+                <li><a onclick="myLogout();" class="black-text tooltipped"  data-position="bottom" data-tooltip="Logout from application"><i class="material-icons">exit_to_app</i></a></li>
+                <li><a class="dark-toggle tooltipped black-text" onclick="myDark()"  data-position="bottom"  data-tooltip="Toggle dark/light themes" ><i class="material-icons">brightness_4</i></a></li>
+                <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+                <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+            </ul>
+     </div>
+</nav>
+</div>
+{% endblock header %}
+{% block content %}
+<div class="row">
+  <div class="col s12">
+    <br><br>
+    <div class="card z-depth-5 hoverable">
+      <div class="card-content">
+        <center><h4><b>REQUESTS</b></h3></center>
+        <li class="divider"></li>
+        <table class="striped">
+        <thead>
+          <tr>
+              <th>Request ID</th>
+              <th>Request Type</th>
+              <th>Request Discription</th>
+              <th>Request Date</th>
+              <th>Request Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for request in Requests reversed%}
+           <tr>
+            <td> <a href="/ReqDetail/{{request.id}}/" class="blue-text">{{request.id}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.RequestType}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.RequestDesc}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.created}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.Status}}</a></td>
+          </tr>
+          {% empty %}
+           <h5>You have not raised any request</h5>
+          {% endfor %}
+        </tbody>
+      </table>
+  <a class="btn-floating btn-large waves-effect waves-light red right pulse tooltipped" data-position="top" data-tooltip="Add new request" href="/AddRequest/"><i class="material-icons">add</i></a>
+  </button>
+      </div>
+    </div>
+  </div>
+</div>  
+{% endblock content %}
+<script src="{% static 'js/DarkToggle.js' %}"></script>
+<script src="{% static 'js/MaterilizeMain.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+  </script>
+  <script>
+function myLogout() {
+  if (confirm("Logout ? Are you sure !")) {
+    window.location.href = '/Logout/';
+  }
+}
+</script>

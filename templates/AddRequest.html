@@ -1,0 +1,77 @@
+{% extends 'Base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col s12">
+    <h4><b>Add Request </b></h4>
+    <div class="card z-depth-5 hoverable">
+      <div class="card-content">
+        <form action = '/AddRequest/' method="POST">
+            {% csrf_token %}
+        <div class="row">
+             <div class="input-field col s12">
+              <select name='rtype'required>
+                <option value="" disabled selected>Choose your request type</option>
+               {% for req in RequestType  %} 
+                  <option value={{req.id}}>{{req}}</option>
+                  {% endfor %}
+              </select>
+            <label>Select Request*</label>
+         </div>
+        </div>
+          <div class="row">
+              <div class="input-field col s12">
+                  <input placeholder="Description" id="desc" type="text" name="Rqdesc" class="validate" required>
+                  <label for="userid" class="black-text">Request Description *</label>
+              </div>
+          </div>  
+         <div class="row">
+              <div class="input-field col s12">
+                  <input placeholder="City name goes here" id="desc" type="text" name="cityname" class="validate" required>
+                  <label for="userid" class="black-text">City Name *</label>
+              </div>
+          </div>
+           
+           <div class="row">
+             <div class="input-field col s12">
+              <select name='state' required>
+                <option value="" disabled selected>Choose your state</option>
+               {% for state in allstates %} 
+                  <option value={{state.id}}>{{state}}</option>
+                  {% endfor %}
+              </select>
+            <label>Select State</label>
+         </div>
+           </div>
+
+          <div class="row">
+              <div class="input-field col s12">
+                  <input placeholder="Pin Code" id="desc" type="number" name="pcode" class="validate" required>
+                  <label for="userid" class="black-text">Pin Code*</label>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="input-field col s1">
+                  <input placeholder="Description" id="desc" type="text" name="ccode" class="validate"value = "+91" required>
+                  <label for="userid" class="black-text"> Country Code *</label>
+              </div>
+              <div class="input-field col s11 ">
+                  <input placeholder="10 digit number goes here" id="desc" type="number" name="phonenum" class="validate" required>
+                  <label for="userid" class="black-text">Phone *</label>
+              </div>
+          </div><br>
+                </button>
+  <button class="btn waves-effect waves-light right black pulse" id= "submitanswer" type="submit">Register
+                </button>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
+      
+</script>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'Base.html' %}
+{% block content %}
+{% for request in Request%}
+<div class="row">
+  <div class="col s12">
+    <h4><b>Request Details</b></h4>
+    <div class="card z-depth-5 hoverable">
+      <div class="card-content">
+          <br>
+                  <h5><b>Request Type:</b> {{request.RequestType}}</h5>
+                  <h5><b>Request Description:</b> {{ request.RequestDesc}}</h5>
+                  <h5><b>City:</b> {{request.City }}</h5>
+                  <h5><b>State: </b>{{ request.State}}</h5>
+                  <h5><b>Pin Code:</b> {{ request.Pincode}}</h5>
+                  <h5><b> Phone Number: </b>{{ request.PhoneCode}} - {{ request.Phone}} </h5>
+                  <h5><b>Status: </b>{{ request.Status}}</h5>
+                  <h5><b>Remarks: </b>{{ request.Remark}}</h5>
+                  <h5><b>Updated By:</b> Admin </h5>
+                </button>
+  <a class="btn waves-effect waves-light right black pulse" href="/request/" type="submit">Go Back</a>
+       {%empty%}
+       <h4><b> Sorry no data found.</b></h4>
+        </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+<script>
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
+
+</script>
+{% endblock content %}
